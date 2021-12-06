@@ -95,8 +95,8 @@ if (isset($_GET['proceed'])) {
           <p>Very us move be blessed multiply night</p>
         </div>
         <div class="page_link">
-          <a href="index.html">Home</a>
-          <a href="checkout.html">Product Checkout</a>
+          <a href="index.php">Home</a>
+          <a href="checkout.php">Product Checkout</a>
         </div>
       </div>
     </div>
