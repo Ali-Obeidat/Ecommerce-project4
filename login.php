@@ -53,7 +53,7 @@ function imagePath()
 	$imagePath = "";
 	if ($image && $image['tmp_name']) {
 		$imagePath = 'IMG-' . uniqid() . "-" . $image['name'];
-		move_uploaded_file($image['tmp_name'], $imagePath);
+		move_uploaded_file($image['tmp_name'], "image/" . $imagePath);
 	}
 }
 
