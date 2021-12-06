@@ -14,8 +14,8 @@ require_once("./include/header.php");
           <p>Very us move be blessed multiply night</p>
         </div>
         <div class="page_link">
-          <a href="index.html">Home</a>
-          <a href="single-product.html">Product Details</a>
+          <a href="index.php">Home</a>
+          <a href="single-product.php">Product Details</a>
         </div>
       </div>
     </div>
@@ -220,7 +220,7 @@ if (!$single_product_query) {
                 <div class="review_item">
                   <div class="media">
                     <div class="d-inline mr-3">
-                      <img width="75px" class="rounded-circle" src="<?php echo $user_img; ?>" alt="" />
+                      <img width="75px" class="rounded-circle" src="image/<?php echo $user_img; ?>" alt="" />
                     </div>
                     <div class="media-body">
                       <h4><?php echo $user_name ?></h4>
@@ -235,20 +235,23 @@ if (!$single_product_query) {
                 </div>
                 <hr>
 
-              <?php } ?>
-              <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <textarea class="form-control" name="message" id="message" rows="1" placeholder="Message"></textarea>
-                    <input type="hidden" name="id" value="<?php echo $p_id ?>">
+              <?php }
+              if (isset($_SESSION['userLogin'])) { ?>
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <textarea class="form-control" name="message" id="message" rows="3" placeholder="Add your comment"></textarea>
+                      <input type="hidden" name="id" value="<?php echo $p_id ?>">
+                    </div>
                   </div>
-                </div>
-                <div class="col-md-12 text-right">
-                  <button type="submit" name="comment" class="btn submit_btn">
-                    Submit Now
-                  </button>
-                </div>
-              </form>
+                  <div class="col-md-12 text-right">
+                    <button type="submit" name="comment" class="btn submit_btn">
+                      Submit Now
+                    </button>
+                  </div>
+                </form>
+              <?php } ?>
+
             </div>
           </div>
         </div>
