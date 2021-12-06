@@ -78,7 +78,7 @@ require_once("include/header.php");
 
 <!--================ Feature Product Area =================-->
 
-<section style="margin-top:0 !important; margin-bottom:0 ;" class="feature_product_area section_gap_bottom_custom">
+<section style="margin-top:0 !important; margin-bottom:0 ; padding-top:0px" class="feature_product_area section_gap_bottom_custom">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-12">
@@ -151,7 +151,7 @@ require_once("include/header.php");
 
 
 <!--================ On Sale Products Area =================-->
-<section style="margin-top:0  !important; margin-bottom:0 ;" class="new_product_area section_gap_top section_gap_bottom_custom">
+<section style="margin-top:0  !important; margin-bottom:0 ; padding-top:0px" class="new_product_area section_gap_top section_gap_bottom_custom">
   <div class="page-content page-container " id="page-content">
     <div class="padding">
       <div class="row container-fluid">
@@ -244,11 +244,8 @@ require_once("include/header.php");
 </section>
 <!--================ End Offer Area =================-->
 
-
-
-
 <!--================ Start category Area =================-->
-<section style="margin-top:0 !important; margin-bottom:0 ;" class="feature_product_area section_gap_bottom_custom">
+<section style="margin-top:0 !important; margin-bottom:0 ; padding-top:60px;" class="feature_product_area section_gap_bottom_custom">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-12">
