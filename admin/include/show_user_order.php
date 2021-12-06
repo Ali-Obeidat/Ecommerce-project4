@@ -54,7 +54,7 @@ if (isset($_GET['show'])) {
               <td class="numeric">X <?php echo $product_quantity ?></td>
               <td> <?php echo $product_size ?></td>
               <td class="numeric"><?php echo $order_date ?></td>
-              <td class="numeric"><?php echo $order_sub_total ?></td>
+              <td class="numeric"><?php echo $order_sub_total ?> JD</td>
               <td class="numeric"></td>
               <td><a href="manage_order.php?source=show_order&show=3&delete=<?php echo $users_cart_id ?>" class="btn btn-danger">delete</a></td>
             </tr>
@@ -67,7 +67,7 @@ if (isset($_GET['show'])) {
             <td></td>
             <td></td>
             <td></td>
-            <td><?php echo $order_total ?></td>
+            <td><?php echo $order_total ?> JD</td>
             <td></td>
           </tr>
         </tbody>
