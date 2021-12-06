@@ -20,7 +20,7 @@ if (isset($_POST['add_category'])) {
   $product_sizes       = $_POST['Sizes'];
   $product_price        = $_POST['product_price'];
   $featured        = $_POST['featured'];
-  $Sale_Status        = $_POST['Sale_Status'];
+ 
   $product_quantity        = $_POST['product_quantity'];
 
   $m_image        = $_FILES['Product_Image']['name'];
@@ -37,7 +37,7 @@ if (isset($_POST['add_category'])) {
 
   $Description    = $_POST['Description'];
   if (!isset($_POST['price_on_sale'])) {
-    $price_on_sale = "";
+    $price_on_sale = "0";
   } else {
     $price_on_sale        = $_POST['price_on_sale'];
   }
@@ -85,6 +85,8 @@ if (isset($_POST['add_category'])) {
   }
   if (empty($Sale_Status)) {
     $Sale_Status = "off";
+  }else {
+    $Sale_Status  = $_POST['Sale_Status'];
   }
   if ($categoryStatus == true && $productNameStatus == true && $tagsStatus == true && $priceStatus == true && $img_status == true) {
     move_uploaded_file($m_image_temp, "../image/$m_image");
@@ -271,7 +273,7 @@ if (isset($_POST['add_category'])) {
               <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                   <button class="btn btn-theme" name="add_category" type="submit">Add </button>
-                  <button class="btn btn-theme04" type="button">Cancel</button>
+                 <a href="show_products.php"><button class="btn btn-theme04" type="button">Cancel</button></a> 
                 </div>
               </div>
             </form>
