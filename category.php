@@ -15,9 +15,8 @@ include("include/header.php");
           <p>Very us move be blessed multiply night</p>
         </div>
         <div class="page_link">
-          <a href="index.html">Home</a>
-          <a href="category.html">Shop</a>
-          <!-- <a href="category.html">Women Fashion</a> -->
+          <a href="index.php">Home</a>
+          <a href="category.php">Shop</a>
         </div>
       </div>
     </div>
@@ -43,7 +42,7 @@ include("include/header.php");
         <div class="latest_product_inner">
           <div class="row">
             <?php
-            $query = "SELECT * FROM products ORDER BY product_price ASC";
+            $query = "SELECT * FROM products ORDER BY product_price ASC LIMIT 9";
             $select_products = mysqli_query($connection, $query);
             while ($row = mysqli_fetch_assoc($select_products)) {
               $product_id = $row['product_id'];
@@ -76,6 +75,7 @@ include("include/header.php");
                     <a href="#" class="d-block">
                       <h4><?php echo $product_name ?></h4>
                     </a>
+
                     <?php
                     if ($product_price_on_sale != 0) { ?>
                       <div class="mt-3">
@@ -86,12 +86,22 @@ include("include/header.php");
                       <div class="mt-3">
                         <span class="mr-4"><?php echo $product_price . " JOD" ?></span>
                       </div>
+
                     <?php } ?>
                   </div>
                 </div>
               </div>
               <!-- REEM -->
             <?php    }  ?>
+            <nav aria-label="Page navigation example" class="mx-auto">
+              <ul class="pagination pg-blue">
+                <!-- <li class="page-item"><a class="page-link">Previous</a></li> -->
+                <li class="page-item"><a href="secondPage.php" class="page-link">1</a></li>
+                <li class="page-item"><a href="secondPage.php" class="page-link">2</a></li>
+                <li class="page-item"><a href="thirdPage.php" class="page-link">3</a></li>
+                <!-- <li class="page-item"><a class="page-link">Next</a></li> -->
+              </ul>
+            </nav>
           </div>
 
         </div>
