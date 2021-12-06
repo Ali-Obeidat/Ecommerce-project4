@@ -99,7 +99,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "add_to_cart") {
   <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="icon" href="img/favicon.png" type="image/png" />
+  <img src="img/styleloft-03.svg" style="    width: 140px ; height: 50px;" alt="image" />
   <title>Eiser ecommerce</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.css" />
