@@ -1,5 +1,6 @@
-<?php include("./include/header.php");
+<?php
 session_start();
+include("./include/header.php");
 include("function.php");
 ?>
 

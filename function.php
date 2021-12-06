@@ -1,5 +1,3 @@
-
-
 <?php function singleCategory ($id){
 
  $conn = mysqli_connect("localhost","root","","ecommerce");?>

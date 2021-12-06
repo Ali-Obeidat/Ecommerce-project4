@@ -1,4 +1,5 @@
 <?php
+$connection = mysqli_connect("localhost", "root", "", "ecommerce");
 session_start();
 
 if (isset($_GET['update'])) {
@@ -127,6 +128,7 @@ require_once("./include/header.php");
               <th scope="col">Product</th>
               <th scope="col">Price</th>
               <th scope="col">Quantity</th>
+              <th scope="col">Size</th>
               <th scope="col">Total</th>
             </tr>
           </thead>
@@ -139,7 +141,7 @@ require_once("./include/header.php");
                 foreach ($_SESSION['shopping_cart'] as $keys => $values) { ?>
                   <tr>
                     <td> <button class="myBtn myBtnCart" value="<?php echo $values['item_id']; ?>" name="delete" type="submit"><i class="fas fa-times"></i></button></td>
-                    <td><img style="width: 100px;" src="<?php echo $values['item_image'];  ?>" alt=""></td>
+                    <td><img style="width: 100px;" src="image/<?php echo $values['item_image'];  ?>" alt=""></td>
                     <td><?php echo $values['item_name']; ?></td>
                     <td><?php echo $values['item_price']; ?></td>
                     <td>
@@ -147,6 +149,7 @@ require_once("./include/header.php");
                         <input type="number" min="1" name="quantity<?php echo $i ?>" value="<?php echo $values['item_quantity']; ?>">
                       </div>
                     </td>
+                    <td><?php echo $values['item_size'] ?></td>
                     <td><?php echo $values['item_quantity'] * $values['item_price']; ?></td>
                   </tr>
               <?php $i++;

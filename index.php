@@ -1,6 +1,12 @@
 <?php
 session_start();
+$connection = mysqli_connect("localhost", "root", "", "ecommerce");
+
 require_once("include/header.php");
+if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == true) {
+  echo "<script> Swal.fire('The Order Confirmed','It will be delivered within 3 to 5 working days <br><br> Thank you for your visit  ','success') </script>";
+  unset($_SESSION['refresh']);
+}
 
 ?>
 
@@ -12,6 +18,10 @@ require_once("include/header.php");
 
     .single-feature:hover {
       transform: scale(1.1);
+    }
+
+    .swal2-select {
+      display: none;
     }
   </style>
 </head>
@@ -96,7 +106,7 @@ require_once("include/header.php");
       $query = "SELECT * FROM products 
                               INNER JOIN categories ON 
                               products.category_id = categories.category_id
-                              WHERE products.product_featured='on' ";
+                              WHERE products.product_featured='on' LIMIT 6 ";
 
       $select_product = mysqli_query($connection, $query);
       while ($row = mysqli_fetch_assoc($select_product)) {

@@ -1,4 +1,6 @@
-<?php require_once("./include/header.php")
+<?php
+$connection = mysqli_connect("localhost", "root", "", "ecommerce");
+require_once("./include/header.php")
 
 ?>
 
@@ -13,7 +15,6 @@
         <div class="page_link">
           <a href="index.php">Home</a>
           <a href="category.php">Shop</a>
-          <!-- <a href="category.html">Women Fashion</a> -->
         </div>
       </div>
     </div>

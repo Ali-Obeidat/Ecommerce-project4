@@ -1,5 +1,6 @@
 <?php
 session_start();
+$connection = mysqli_connect("localhost", "root", "", "ecommerce");
 require_once("./include/header.php");
 ?>
 
@@ -85,7 +86,7 @@ if (!$single_product_query) {
           <h3><?php echo $product_name ?></h3>
 
           <h2 class="d-inline"> <?php
-                                if ($product_price_on_sale != 0) { ?>
+                                if ($sale_status == "on") { ?>
               <div class="mt-3">
                 <span class="mr-4"><?php echo $product_price_on_sale . " JOD" ?></span>
                 <del><?php echo $product_price . " JOD" ?></del>
@@ -251,7 +252,6 @@ if (!$single_product_query) {
                   </div>
                 </form>
               <?php } ?>
-
             </div>
           </div>
         </div>

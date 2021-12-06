@@ -1,5 +1,6 @@
     <?php
     session_start();
+    $connection = mysqli_connect("localhost", "root", "", "ecommerce");
     require_once("./include/db.php");
     // Save Data
     if (isset($_POST["save"])) {

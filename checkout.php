@@ -1,10 +1,46 @@
 <?php
+$connection = mysqli_connect("localhost", "root", "", "ecommerce");
 session_start();
 if (!isset($_SESSION['userLogin']) && !isset($_SESSION['adminLogin'])) {
   header("location: login.php");
 }
+
+function refresh($site)
+{
+  echo " <meta http-equiv='refresh' content='0;$site' />";
+}
+
 require_once("include/header.php");
+
 $errors = [];
+if (isset($_GET['proceed'])) {
+  $state = check($_GET['name'], $_GET['phone'], $_GET['city'], $_GET['district']);
+  if ($state == true) {
+    $totalQuantity = 0;
+    foreach ($_SESSION['shopping_cart'] as $keys => $values) {
+      $totalQuantity += $values['item_quantity'];
+    }
+    $query = "INSERT INTO orders (user_id,order_status,order_date,product_quantity,order_total_amount,city_name	, street_name , phone_number)
+              VALUES ({$_SESSION['userLogin']},'Order Placed',NOW(),{$totalQuantity},{$_SESSION['cart_total_price']},'{$_GET['city']}','{$_GET['district']}','{$_GET['phone']}')";
+    mysqli_query($connection, $query);
+    $query   = "SELECT order_id FROM orders WHERE orders.user_id = '{$_SESSION['userLogin']}' ORDER BY order_id DESC LIMIT 1;";
+    $result  = mysqli_query($connection, $query);
+    $row     = mysqli_fetch_assoc($result);
+    $orderId = $row['order_id'];
+    foreach ($_SESSION['shopping_cart'] as $keys => $values) {
+      $query = "INSERT INTO users_cart (user_id,product_id,order_id,quantity,sub_total,size_cart) 
+     VALUES ('{$_SESSION['userLogin']}','{$values['item_id']}','{$orderId}','{$values['item_quantity']}','{$values['item_total_price']}', '{$values['item_size']}')";
+      mysqli_query($connection, $query);
+    }
+    // echo "<script> Swal.fire('The Order Confirmed','It will be delivered within 3 to 5 working days <br><br> Thank you for your visit  ','success') </script>";
+    unset($_SESSION['shopping_cart']);
+    unset($_SESSION['cart_total_price']);
+    $_SESSION['refresh'] = true;
+    sleep(1);
+    refresh('index.php');
+  }
+}
+
 function check($name, $phone, $city, $district)
 {
   global $errors;
@@ -39,31 +75,6 @@ function check($name, $phone, $city, $district)
     $state     = false;
   }
   return $state;
-}
-
-if (isset($_GET['proceed'])) {
-  $state = check($_GET['name'], $_GET['phone'], $_GET['city'], $_GET['district']);
-  if ($state == true) {
-    $totalQuantity = 0;
-    foreach ($_SESSION['shopping_cart'] as $keys => $values) {
-      $totalQuantity += $values['item_quantity'];
-    }
-    $query = "INSERT INTO orders (user_id,order_status,order_date,product_quantity,order_total_amount,city_name	, street_name , phone_number)
-              VALUES ({$_SESSION['userLogin']},'Order Placed',NOW(),{$totalQuantity},{$_SESSION['cart_total_price']},'{$_GET['city']}','{$_GET['district']}','{$_GET['phone']}')";
-    mysqli_query($connection, $query);
-    $query   = "SELECT order_id FROM orders WHERE orders.user_id = '{$_SESSION['userLogin']}' ORDER BY order_id DESC LIMIT 1;";
-    $result  = mysqli_query($connection, $query);
-    $row     = mysqli_fetch_assoc($result);
-    $orderId = $row['order_id'];
-    foreach ($_SESSION['shopping_cart'] as $keys => $values) {
-      $query = "INSERT INTO users_cart (user_id,product_id,order_id,quantity,sub_total,size_cart) 
-     VALUES ('{$_SESSION['userLogin']}','{$values['item_id']}','{$orderId}','{$values['item_quantity']}','{$values['item_total_price']}', '{$values['item_size']}')";
-      mysqli_query($connection, $query);
-    }
-    echo "<script> Swal.fire('The Order Confirmed','It will be delivered within 3 to 5 working days <br><br> Thank you for your visit  ','success') </script>";
-    unset($_SESSION['shopping_cart']);
-    unset($_SESSION['cart_total_price']);
-  }
 }
 
 ?>
@@ -158,6 +169,7 @@ if (isset($_GET['proceed'])) {
                     <li>
                       <a><?php echo $values['item_name']; ?>
                         <span class="middle"><?php echo "x " . $values['item_quantity'] ?? ""; ?></span>
+                        <span class="middle"><?php echo $values['item_size'] ?? ""; ?></span>
                         <span class="last"><?php echo "JD " . $values['item_total_price'] ?? ""; ?></span>
                       </a>
                     </li>

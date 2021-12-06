@@ -1,5 +1,7 @@
 <?php
 session_start();
+$connection = mysqli_connect("localhost", "root", "", "ecommerce");
+
 include("./include/header.php");
 ?>
 <!--================Header Menu Area =================-->
@@ -74,10 +76,7 @@ include("./include/header.php");
               $product_price = $row['product_price'];
               $product_price_on_sale = $row['product_price_on_sale'];
               $sale_status = $row['sale_status'];
-
             ?>
-
-
               <div class="col-lg-4 col-md-6">
                 <div class="single-product">
                   <div class="product-img">
@@ -89,21 +88,25 @@ include("./include/header.php");
                         <i class="ti-eye"></i>
                       </a>
                       <a href="#">
-                        <i class="ti-heart"></i>
-                      </a>
-                      <a href="#">
                         <i class="ti-shopping-cart"></i>
                       </a>
                     </div>
                   </div>
                   <div class="product-btm">
                     <a href="#" class="d-block">
-                      <h4><?php echo $product_name ?></h4>
+                      <h4><?php
+                          if ($sale_status == "on") { ?>
+                          <div class="mt-3">
+                            <span class="mr-4"><?php echo $product_price_on_sale . " JOD" ?></span>
+                            <del><?php echo $product_price . " JOD" ?></del>
+                          </div>
+                        <?php } else { ?>
+                          <div class="mt-3">
+                            <span class="mr-4"><?php echo $product_price . " JOD" ?></span>
+                          </div>
+                        <?php } ?>
+                      </h4>
                     </a>
-                    <div class="mt-3">
-                      <span class="mr-4"><?php echo $product_price_on_sale . "JOD" ?></span>
-                      <del><?php echo $product_price . "JOD" ?></del>
-                    </div>
                   </div>
                 </div>
               </div>
