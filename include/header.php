@@ -99,7 +99,6 @@ if (isset($_GET["action"]) && $_GET["action"] == "add_to_cart") {
   <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <img src="img/styleloft-03.svg" style="    width: 140px ; height: 50px;" alt="image" />
   <title>Eiser ecommerce</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.css" />
@@ -162,7 +161,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "add_to_cart") {
         <nav class="navbar navbar-expand-lg navbar-light w-100">
           <!-- Brand and toggle get grouped for better mobile display -->
           <a class="navbar-brand logo_h" href="index.php">
-            <img src="img/logo.png" alt="" />
+  <img src="img/styleloft-03.svg" style="    width: 140px ; height: 50px;" alt="image" />
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
